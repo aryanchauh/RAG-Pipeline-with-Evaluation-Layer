@@ -14,3 +14,4 @@ typesense
 langchain_openai
 langgraph
 tiktoken
+FlagEmbedding

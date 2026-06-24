@@ -1,0 +1,536 @@
+Level 1: Exact Retrieval Tests
+These test whether the retriever can find the correct chunk.
+
+1. Attention Is All You Need pdf question(query) retrieval testing
+
+======================================================================
+QUERY: What replaces recurrence in the Transformer architecture?
+======================================================================
+ANSWER : In this work we propose the Transformer, a model architecture eschewing recurrence and instead relying entirely on an attention mechanism to draw global dependencies between input and output. The Transformer allows for significantly more parallelization and can reach a new state of the art in translation quality after being trained for as little as twelve hours on eight P100 GPUs. 2 Background The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU [16], ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 4.254
+
+======================================================================
+QUERY: How many attention heads are used in the base Transformer model?
+======================================================================
+ANSWER : output values. These are concatenated and once again projected, resulting in the final values, as depicted in Figure 2. Multi-head attention allows the model to jointly attend to information from different representation subspaces at different positions. With a single attention head, averaging inhibits this. MultiHead(Q, K, V) = Concat(head1, ...,headh)W O where headi = Attention(QW Q i , KWK i , V WV i ) Where the projections are parameter matricesW Q i ∈ Rdmodel×dk, W K i ∈ Rdmodel×dk, W V i ∈ ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 5
+SCORE  : 3.500
+
+======================================================================
+QUERY: What is the dimensionality of the model embeddings?
+======================================================================
+ANSWER : FFN(x) = max(0, xW1 + b1)W2 + b2 (2) While the linear transformations are the same across different positions, they use different parameters from layer to layer. Another way of describing this is as two convolutions with kernel size 1. The dimensionality of input and output is dmodel = 512, and the inner-layer has dimensionality df f= 2048. 3.4 Embeddings and Softmax Similarly to other sequence transduction models, we use learned embeddings to convert the input tokens and output tokens to vector ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 5
+SCORE  : 4.628
+
+======================================================================
+QUERY: What datasets were used for machine translation experiments?
+======================================================================
+ANSWER : number, or (iii) contain at least three numbers; for texts that only match the last criterion, we only keep a random subset of 1%. Calendar For creating our datasetC∗, we operate under the assumption that the calendar date in such cases should be the date that the document was created. We approximate this by extracting the date from the URL, if it is present. We ﬁlter out texts for which a date cannot be extracted, leaving around 18% of the documents. Machine Translation For both training and in ...
+SOURCE : Toolformer Language Models Can Teach Themselves to Use Tool.pdf
+PAGE   : 15
+SCORE  : 1.403
+
+======================================================================
+QUERY: What is the purpose of positional encoding?
+======================================================================
+ANSWER : tokens in the sequence. To this end, we add "positional encodings" to the input embeddings at the bottoms of the encoder and decoder stacks. The positional encodings have the same dimension dmodel as the embeddings, so that the two can be summed. There are many choices of positional encodings, learned and fixed [9]. In this work, we use sine and cosine functions of different frequencies: P E(pos,2i) = sin(pos/100002i/dmodel) P E(pos,2i+1) = cos(pos/100002i/dmodel) where pos is the position and i ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 6
+SCORE  : 2.744
+
+2. RAG pdf question(query) retrieval testing
+======================================================================
+QUERY: What retriever is used in the RAG paper?
+======================================================================
+ANSWER : retriever is initialized using DPR’s retriever, which uses retrieval supervision on Natural Questions and TriviaQA. RAG compares favourably to the DPR QA system, which uses a BERT-based “cross- encoder” to re-rank documents, along with an extractive reader. RAG demonstrates that neither a re-ranker nor extractive reader is necessary for state-of-the-art performance. There are several advantages to generating answers even when it is possible to extract them. Docu- ments with clues about the answe ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 5
+SCORE  : 6.103
+
+======================================================================
+QUERY: What knowledge source does RAG retrieve from?
+======================================================================
+ANSWER : text generation. To test RAG’s natural language generation (NLG) in a knowledge-intensive setting, we use the MSMARCO NLG task v2.1 [ 43]. The task consists of questions, ten gold passages retrieved from a search engine for each question, and a full sentence answer annotated from the retrieved passages. We do not use the supplied passages, only the questions and answers, to treat 4
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 4.112
+
+======================================================================
+QUERY: What is the difference between RAG-Sequence and RAG-Token?
+======================================================================
+ANSWER : byθ that generates a current token based on a context of the previousi− 1 tokensy1:i−1, the original inputx and a retrieved passagez. To train the retriever and generator end-to-end, we treat the retrieved document as a latent variable. We propose two models that marginalize over the latent documents in different ways to produce a distribution over generated text. In one approach, RAG-Sequence, the model uses the same document to predict each target token. The second approach, RAG-Token, can pre ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 3
+SCORE  : 4.523
+
+======================================================================
+QUERY: How many Wikipedia documents were indexed?
+======================================================================
+ANSWER : G Full Multi-Document Question Answering Results This section tabulates model performance when evaluated on the multi-document QA task with varying numbers of documents (Figure 5). “Index n” indicates performance when the document with the answer occurs at position n + 1, where lower indices are closer to the start of the input context. For example, index 0 refers to performance when the document with the answer is placed at the very start of the context (i.e., first amongst all documents). G.1 ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 18
+SCORE  : -3.939
+
+======================================================================
+QUERY: What problem is RAG designed to solve?
+======================================================================
+ANSWER : before marginalizing, and repeating the process with the following output token, Formally, we deﬁne: pRAG-Token(y|x) ≈ N∏ i ∑ z∈top-k(p(·|x)) pη(z|x)pθ(yi|x,z,y 1:i−1) Finally, we note that RAG can be used for sequence classiﬁcation tasks by considering the target class as a target sequence of length one, in which case RAG-Sequence and RAG-Token are equivalent. 2.2 Retriever: DPR The retrieval componentpη(z|x) is based on DPR [26]. DPR follows a bi-encoder architecture: pη(z|x)∝ exp ( d(z)⊤q(x) ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 3
+SCORE  : 0.502
+
+3. ReAct pdf question(query) retrieval testing
+
+======================================================================
+QUERY: What does ReAct stand for?
+======================================================================
+ANSWER : in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with and gather additional information from external sources such as knowledge bases or environments. We apply our approach, named ReAct, to a diverse set of language and decision making tasks and demonstrate its effectiveness over state-of-the-art baselines in addition to improved human in ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 2.880
+
+======================================================================
+QUERY: Which environments were used to evaluate ReAct?
+======================================================================
+ANSWER : On the value of internal reasoning vs. external feedback To our knowledge, ReAct is the ﬁrst demonstration of combined reasoning and action using an LLM applied to an interactive environment within a closed-loop system. Perhaps the closest prior work is Inner Monologue (IM), from Huang et al. (2022b), in which actions from an embodied agent are motivated by an eponymous “inner monologue”. However, IM’s “inner monologue” is limited to observations of the environment state and what needs to be com ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 8
+SCORE  : 1.498
+
+======================================================================
+QUERY: How does ReAct combine reasoning and acting?
+======================================================================
+ANSWER : studies on how reasoning and acting can be combined in a synergistic manner for general task solving, and if such a combination can bring systematic beneﬁts compared to reasoning or acting alone. In this work, we present ReAct, a general paradigm to combine reasoning and acting with language models for solving diverse language reasoning and decision making tasks (Figure 1). ReAct prompts LLMs to generate both verbal reasoning traces and actions pertaining to a task in an interleaved manner, whic ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 2
+SCORE  : 7.930
+
+======================================================================
+QUERY: What action types are used in the Wikipedia environment?
+======================================================================
+ANSWER : setup for both tasks, where models only receive the question/claim as input without access to support paragraphs, and have to rely on their internal knowledge or retrieve knowledge via interacting with an external environment to support reasoning. Action Space We design a simple Wikipedia web API with three types of actions to support interactive information retrieval: (1) search[entity], which returns the ﬁrst 5 sentences from the corresponding entity wiki page if it exists, or else suggests to ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 4
+SCORE  : 5.843
+
+======================================================================
+QUERY: What benchmark was used for fact verification?
+======================================================================
+ANSWER : Figure 5 in Section 4. 3 K NOWLEDGE -I NTENSIVE REASONING TASKS We begin with knowledge-intensive reasoning tasks like multi-hop question answering and fact veriﬁcation. As shown in Figure 1(1d), by interacting with a Wikipedia API, ReAct is able to retrieve information to support reasoning, while also use reasoning to target what to retrieve next, demonstrating a synergy of reasoning and acting. 3.1 S ETUP Domains We consider two datasets challenging knowledge retrieval and reasoning: (1) Hot- ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 4
+SCORE  : 2.000
+
+4. Lost In The Middle pdf question(query) retrieval testing
+======================================================================
+QUERY: What is the central finding of the paper?
+======================================================================
+ANSWER : Published as a conference paper at ICLR 2023 Failure: Search error ReAct Question: What does the goddess associated with the goddess frigg consists of what tales? Thought 1: I need to search goddess frigg and find its associated goddess. Action 1: Search[goddess frigg] Observation 1: Could not find goddess frigg. Similar: [’Frigg’, ’Frigg and Freyja common origin hypothesis’, ’Freyja (section Relation to Frigg and other goddesses and figures)’, ’Eir (redirect from Eir (goddess))’, ’Baldr’]. Thou ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 33
+SCORE  : -9.525
+
+======================================================================
+QUERY: How do language models perform when relevant information is placed in the middle of long contexts?
+======================================================================
+ANSWER : within the input context by changing the order of the documents to place the relevant document at the beginning, middle or end of the context. We find that changing the position of relevant information in the input context can substantially affect model performance, indicating that current language models do not robustly access and use information in long input contexts. Furthermore, we observe a distinctive U-shaped performance curve (Figure 1); language model performance is highest when releva ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 2
+SCORE  : 8.356
+
+======================================================================
+QUERY: Which models were evaluated in the study?
+======================================================================
+ANSWER : understand how they affect how language models use context. Finally, we conclude with a practi- cal case study of open-domain question answering, finding that the performance of language model readers saturates far before retriever recall. Our results and analysis provide a better understanding of how language models use their input context and provides new evaluation protocols for future long-context models. Acknowledgments We would like to thank Luke Zettlemoyer, who served as our TACL action ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.194
+
+======================================================================
+QUERY: What context lengths were tested?
+======================================================================
+ANSWER : document question answering experiments, see §2.2 for more details. Figure 7 presents key-value retrieval perfor- mance. Claude-1.3 and Claude-1.3 (100K) do nearly perfectly on all evaluated input context lengths, but other models struggle, especially when contexts have 140 or 300 key-value pairs— although the synthetic key-value retrieval task only requires identifying exact match within the input context, not all models achieve high performance. Similar to our multi-document QA results, GPT- 3 ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 6
+SCORE  : 1.860
+
+======================================================================
+QUERY: What retrieval setting was used in the experiments?
+======================================================================
+ANSWER : can robustly use information within long input con- texts, then their performance should be minimally affected by the position of the relevant information in the input context. We first experiment with multi-document ques- tion answering, which requires models to reason over provided documents to find relevant informa- tion and use it to answer a given question; this task mimics the retrieval-augmented generation setup underlying many commercial generative search and question answering applicati ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 2
+SCORE  : 2.212
+
+Level 2: Multi-Chunk Retrieval Tests
+These require information from multiple chunks.
+
+======================================================================
+QUERY: Explain the Transformer architecture and its major components.
+======================================================================
+ANSWER : Figure 1: The Transformer - model architecture. The Transformer follows this overall architecture using stacked self-attention and point-wise, fully connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1, respectively. 3.1 Encoder and Decoder Stacks Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two sub-layers. The first is a multi-head self-attention mechanism, and the second is a simple, position- wise fully conn ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 3
+SCORE  : 2.494
+
+======================================================================
+QUERY: Describe how self-attention works in the Transformer.
+======================================================================
+ANSWER : The Transformer uses multi-head attention in three different ways: • In "encoder-decoder attention" layers, the queries come from the previous decoder layer, and the memory keys and values come from the output of the encoder. This allows every position in the decoder to attend over all positions in the input sequence. This mimics the typical encoder-decoder attention mechanisms in sequence-to-sequence models such as [38, 2, 9]. • The encoder contains self-attention layers. In a self-attention la ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 5
+SCORE  : 7.303
+
+======================================================================
+QUERY: Explain the complete RAG pipeline from retrieval to generation.
+======================================================================
+ANSWER : decisions and updating their world knowledge remain open research problems. Pre- trained models with a differentiable access mechanism to explicit non-parametric memory have so far been only investigated for extractive downstream tasks. We explore a general-purpose ﬁne-tuning recipe for retrieval-augmented generation (RAG) — models which combine pre-trained parametric and non-parametric mem- ory for language generation. We introduce RAG models where the parametric memory is a pre-trained seq2seq ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 2.035
+
+======================================================================
+QUERY: How does ReAct interact with external environments?
+======================================================================
+ANSWER : in an interleaved manner, allowing for greater synergy between the two: reasoning traces help the model induce, track, and update action plans as well as handle exceptions, while actions allow it to interface with and gather additional information from external sources such as knowledge bases or environments. We apply our approach, named ReAct, to a diverse set of language and decision making tasks and demonstrate its effectiveness over state-of-the-art baselines in addition to improved human in ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 3.972
+
+======================================================================
+QUERY: Summarize the findings of Lost in the Middle.
+======================================================================
+ANSWER : The	Divine Comedy	(x) q Query Encoder q(x) MIPS pθ Generator pθ (Parametric) Margin- alize This	14th	century	work is	divided	into	3 sections:	"Inferno", "Purgatorio"	& "Paradiso"									(y) End-to-End Backprop through q and pθ Barack	Obama	was born	in	Hawaii.(x) Fact Veriﬁcation: Fact Query supports	(y) Question Generation Fact Veriﬁcation: Label Generation Document Index Define	"middle	ear"(x) Question Answering: Question Query The	middle	ear	includes the	tympanic	cavity	and the	three	ossicles ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 2
+SCORE  : -9.699
+
+Level 3: Retrieval Ranking Tests
+
+These are excellent for debugging retrieval quality.
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : could represent promising future work. 6 Discussion In this work, we presented hybrid generation models with access to parametric and non-parametric memory. We showed that our RAG models obtain state of the art results on open-domain QA. We found that people prefer RAG’s generation over purely parametric BART, ﬁnding RAG more factual and speciﬁc. We conducted an thorough investigation of the learned retrieval component, validating its effectiveness, and we illustrated how the retrieval index can ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 9
+SCORE  : 3.590
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : To demonstrate the differences between ReAct and IM, and to highlight the importance of internal reasoning vs. simple reactions to external feedback, we ran an ablation experiment using a thought pattern composed of IM-like dense external feedback. As can be seen in Table 3,ReAct substantially outperforms IM-style prompting ( ReAct-IM) (71 vs. 53 overall success rate), with consistent advantages on ﬁve out of six tasks. Qualitatively, we observed that ReAct-IM often made mistakes in identifying ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 8
+SCORE  : 3.588
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : for both WSJ only and the semi-supervised setting. Our results in Table 4 show that despite the lack of task-specific tuning our model performs sur- prisingly well, yielding better results than all previously reported models with the exception of the Recurrent Neural Network Grammar [8]. In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley- Parser [29] even when training only on the WSJ training set of 40K sentences. 7 Conclusion In this work, we presente ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 10
+SCORE  : 1.330
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : often highest when relevant information is occurs at the very start or end of the context, and rapidly degrades when models must retrieve from the middle of the input context. placed at the start of the input context, LongChat- 13B (16K) tends to generate code to retrieve the key, rather than outputting the value directly. 4 Why Are Language Models Not Robust to Changes in the Position of Relevant Information? Our multi-document question answering and key- value retrieval results show that langu ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 7
+SCORE  : 6.299
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks Patrick Lewis†‡, Ethan Perez⋆, Aleksandra Piktus†, Fabio Petroni†, Vladimir Karpukhin†, Naman Goyal†, Heinrich Küttler†, Mike Lewis†, Wen-tau Yih†, Tim Rocktäschel†‡, Sebastian Riedel†‡, Douwe Kiela† †Facebook AI Research;‡University College London;⋆New York University; plewis@fb.com Abstract Large pre-trained language models have been shown to store factual knowledge in their parameters, and achieve state-of-the-art results when ﬁ ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 2.648
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+
+======================================================================
+QUERY: What are the advantages of RAG over parametric language models?
+======================================================================
+ANSWER : per token. We ﬁne-tune and evaluate our models on a wide range of knowledge- intensive NLP tasks and set the state of the art on three open domain QA tasks, outperforming parametric seq2seq models and task-speciﬁc retrieve-and-extract architectures. For language generation tasks, we ﬁnd that RAG models generate more speciﬁc, diverse and factual language than a state-of-the-art parametric-only seq2seq baseline. 1 Introduction Pre-trained neural language models have been shown to learn a substanti ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 1
+SCORE  : 0.996
+
+======================================================================
+QUERY: Why does ReAct outperform Chain-of-Thought prompting?
+======================================================================
+ANSWER : trajectories that are more interpretable than baselines without reasoning traces. Furthermore, on two interactive decision making benchmarks (ALFWorld and WebShop), ReAct outperforms imitation and reinforcement learning methods by an absolute success rate of 34% and 10% respectively, while being prompted with only one or two in-context examples. 1 I NTRODUCTION A unique feature of human intelligence is the ability to seamlessly combine task-oriented actions with verbal reasoning (or inner speech ...
+SOURCE : REACT SYNERGIZING REASONING AND ACTING IN.pdf
+PAGE   : 1
+SCORE  : 0.828
+
+======================================================================
+QUERY: Why are Transformers faster to train than RNNs?
+======================================================================
+ANSWER : in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is reduced to a constant number of operations, albeit at the cost of reduced effective resolution due to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as described in section 3.2. Self-attention, sometimes called intra-attention is an attention mechanism rela ...
+SOURCE : Attention Is All You Nee.pdf
+PAGE   : 2
+SCORE  : 0.785
+
+======================================================================
+QUERY: Why do long-context models struggle with information in the middle of documents?
+======================================================================
+ANSWER : ory. Observing a serial-position-like effect in lan- guage models is perhaps surprising, since the self- attention mechanisms underlying Transformer lan- guage models is technically equally capable of re- trieving any token from their contexts. 7 Conclusion We empirically study how language models use long input contexts via a series of controlled ex- periments. We show that language model perfor- mance degrades significantly when changing the position of relevant information, indicating that mo ...
+SOURCE : Lost in the Middle How Language Models Use Long Contexts.pdf
+PAGE   : 11
+SCORE  : 0.951
+
+======================================================================
+QUERY: What are the limitations of Retrieval-Augmented Generation?
+======================================================================
+ANSWER : output sequences,|Y| can become large, requiring many forward passes. For more efﬁcient decoding, we can make a further approximation thatpθ(y|x,zi)≈ 0 wherey was not generated during beam search fromx,zi. This avoids the need to run additional forward passes once the candidate set Y has been generated. We refer to this decoding procedure as “Fast Decoding.” 3 Experiments We experiment with RAG in a wide range of knowledge-intensive tasks. For all experiments, we use a single Wikipedia dump for ...
+SOURCE : Retrieval-Augmented Generation for.pdf
+PAGE   : 4
+SCORE  : 0.558
+

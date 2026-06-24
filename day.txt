@@ -1,0 +1,11 @@
+day 1
+
+
+day5- testing query and improve code base
+
+Q1. How many documents are in the RAG Wikipedia index?
+Q2. How large is the Wikipedia index used by RAG?
+Q3.How many documents were used as the non-parametric memory source?
+Q4. How many Wikipedia documents are stored in the FAISS index?
+
+day 7 llm genration working
